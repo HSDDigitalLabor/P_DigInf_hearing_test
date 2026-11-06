@@ -7,8 +7,7 @@
       "name": "sinus_gen",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
       "synth_flow_mode": "None",
-      "tool_version": "2024.2",
-      "validated": "true"
+      "tool_version": "2024.2"
     },
     "design_tree": {
       "proc_sys_reset_0": "",
@@ -204,19 +203,7 @@
         "direction": "O"
       },
       "button_switch_ext": {
-        "direction": "I",
-        "parameters": {
-          "LAYERED_METADATA": {
-            "value": [
-              "xilinx.com:interface:datatypes:1.0 {",
-              "DATA {datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value data} bitwidth {attribs {resolve_type generated dependency bitwidth format long minimum",
-              "{} maximum {}} value 16} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0} integer {signed {attribs {resolve_type immediate dependency {} format bool",
-              "minimum {} maximum {}} value false}}}} DATA_WIDTH 16",
-              "}"
-            ],
-            "value_src": "ip_prop"
-          }
-        }
+        "direction": "I"
       }
     },
     "components": {
@@ -1921,8 +1908,7 @@
           "blk_mem_gen_0/douta",
           "ila_0/probe3",
           "i2s_transmitter_0/data_left",
-          "i2s_transmitter_0/data_right",
-          "ila_0/probe4"
+          "i2s_transmitter_0/data_right"
         ]
       },
       "c_accum_0_Q": {
