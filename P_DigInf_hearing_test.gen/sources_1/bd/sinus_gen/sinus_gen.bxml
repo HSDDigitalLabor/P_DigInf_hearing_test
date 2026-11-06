@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Root MajorVersion="0" MinorVersion="43">
-  <CompositeFile CompositeFileTopName="sinus_gen" CanBeSetAsTop="false" CanDisplayChildGraph="true">
+  <CompositeFile CompositeFileTopName="sinus_gen" CanBeSetAsTop="true" CanDisplayChildGraph="true">
     <Description>Composite Fileset</Description>
-    <Generation Name="SYNTHESIS" State="RESET" Timestamp="1793714150"/>
-    <Generation Name="SIMULATION" State="RESET" Timestamp="1793714150"/>
-    <Generation Name="IMPLEMENTATION" State="RESET" Timestamp="1793714150"/>
-    <Generation Name="HW_HANDOFF" State="RESET" Timestamp="1793714150"/>
+    <Generation Name="SYNTHESIS" State="RESET" Timestamp="1793958325"/>
+    <Generation Name="SIMULATION" State="RESET" Timestamp="1793958325"/>
+    <Generation Name="IMPLEMENTATION" State="RESET" Timestamp="1793958325"/>
+    <Generation Name="HW_HANDOFF" State="RESET" Timestamp="1793958325"/>
     <FileCollection Name="SOURCES" Type="SOURCES"/>
   </CompositeFile>
 </Root>

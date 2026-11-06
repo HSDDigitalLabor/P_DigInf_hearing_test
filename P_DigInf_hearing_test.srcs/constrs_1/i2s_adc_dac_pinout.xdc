@@ -15,7 +15,8 @@ create_generated_clock -name bclk_gen -source [get_pins sinus_gen_i/clk_divider_
 create_generated_clock -name lrclk_gen -source [get_pins sinus_gen_i/clk_divider_0/U0/clk_24_576m] -divide_by 512 [get_pins sinus_gen_i/clk_divider_0/U0/lrclk_i_reg/Q]
 create_generated_clock -name dac_bclk_port -source [get_pins sinus_gen_i/clk_divider_0/U0/bclk_i_reg/Q] -divide_by 1 [get_ports dac_bclk_ext]
 
-set_false_path -to [get_pins -hierarchical -filter {NAME =~ *rst* || NAME =~ *CLR* || NAME =~ *PRE*}]
+set_false_path -to [get_pins -hierarchical -filter {IS_LEAF && DIRECTION == IN && (REF_PIN_NAME == CLR || REF_PIN_NAME == PRE)}]
+set_false_path -from [get_ports button_switch_ext]
 
 set_clock_groups -asynchronous -group [get_clocks clk_fpga_0] -group [list [get_clocks -of_objects [get_pins sinus_gen_i/clk_wiz_0/inst/mmcm_adv_inst/CLKOUT0]] [get_clocks bclk_gen] [get_clocks lrclk_gen]]
 
@@ -24,6 +25,9 @@ set_output_delay -clock [get_clocks bclk_gen] -min -0.500 [get_ports dac_sdata_e
 set_output_delay -clock [get_clocks bclk_gen] -max 20.500 [get_ports dac_lrclk_ext]
 set_output_delay -clock [get_clocks bclk_gen] -min -10.500 [get_ports dac_lrclk_ext]
 
+
+set_property IOSTANDARD LVCMOS33 [get_ports button_switch_ext]
+set_property PACKAGE_PIN H12 [get_ports button_switch_ext]
 set_property C_CLK_INPUT_FREQ_HZ 300000000 [get_debug_cores dbg_hub]
 set_property C_ENABLE_CLK_DIVIDER false [get_debug_cores dbg_hub]
 set_property C_USER_SCAN_CHAIN 1 [get_debug_cores dbg_hub]

@@ -1,12 +1,12 @@
 {
   "design": {
     "design_info": {
-      "boundary_crc": "0x9B2DC151BB9B693A",
+      "boundary_crc": "0xB903BDB335E1A9E5",
       "device": "xc7z010clg225-1",
       "gen_directory": "../../../../P_DigInf_hearing_test.gen/sources_1/bd/sinus_gen",
       "name": "sinus_gen",
       "rev_ctrl_bd_flag": "RevCtrlBdOff",
-      "synth_flow_mode": "Hierarchical",
+      "synth_flow_mode": "None",
       "tool_version": "2024.2",
       "validated": "true"
     },
@@ -20,7 +20,8 @@
       "i2s_transmitter_0": "",
       "vio_0": "",
       "c_accum_0": "",
-      "xlslice_0": ""
+      "xlslice_0": "",
+      "proc_sys_reset_1": ""
     },
     "interface_ports": {
       "DDR": {
@@ -201,6 +202,21 @@
       },
       "dac_sdata_ext": {
         "direction": "O"
+      },
+      "button_switch_ext": {
+        "direction": "I",
+        "parameters": {
+          "LAYERED_METADATA": {
+            "value": [
+              "xilinx.com:interface:datatypes:1.0 {",
+              "DATA {datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value data} bitwidth {attribs {resolve_type generated dependency bitwidth format long minimum",
+              "{} maximum {}} value 16} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0} integer {signed {attribs {resolve_type immediate dependency {} format bool",
+              "minimum {} maximum {}} value false}}}} DATA_WIDTH 16",
+              "}"
+            ],
+            "value_src": "ip_prop"
+          }
+        }
       }
     },
     "components": {
@@ -1680,7 +1696,7 @@
         "inst_hier_path": "ila_0",
         "parameters": {
           "C_DATA_DEPTH": {
-            "value": "65536"
+            "value": "32768"
           },
           "C_EN_STRG_QUAL": {
             "value": "1"
@@ -1689,7 +1705,10 @@
             "value": "Native"
           },
           "C_NUM_OF_PROBES": {
-            "value": "6"
+            "value": "7"
+          },
+          "C_PROBE4_WIDTH": {
+            "value": "16"
           }
         }
       },
@@ -1766,12 +1785,36 @@
           "data_left": {
             "direction": "I",
             "left": "15",
-            "right": "0"
+            "right": "0",
+            "parameters": {
+              "LAYERED_METADATA": {
+                "value": [
+                  "xilinx.com:interface:datatypes:1.0 {",
+                  "DATA {datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value data} bitwidth {attribs {resolve_type generated dependency bitwidth format long minimum",
+                  "{} maximum {}} value 16} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0} integer {signed {attribs {resolve_type generated dependency signed format",
+                  "bool minimum {} maximum {}} value TRUE}}}} DATA_WIDTH 16",
+                  "}"
+                ],
+                "value_src": "ip_prop"
+              }
+            }
           },
           "data_right": {
             "direction": "I",
             "left": "15",
-            "right": "0"
+            "right": "0",
+            "parameters": {
+              "LAYERED_METADATA": {
+                "value": [
+                  "xilinx.com:interface:datatypes:1.0 {",
+                  "DATA {datatype {name {attribs {resolve_type immediate dependency {} format string minimum {} maximum {}} value data} bitwidth {attribs {resolve_type generated dependency bitwidth format long minimum",
+                  "{} maximum {}} value 16} bitoffset {attribs {resolve_type immediate dependency {} format long minimum {} maximum {}} value 0} integer {signed {attribs {resolve_type generated dependency signed format",
+                  "bool minimum {} maximum {}} value TRUE}}}} DATA_WIDTH 16",
+                  "}"
+                ],
+                "value_src": "ip_prop"
+              }
+            }
           },
           "sdata": {
             "direction": "O"
@@ -1786,13 +1829,34 @@
         "inst_hier_path": "vio_0",
         "parameters": {
           "C_NUM_PROBE_IN": {
-            "value": "0"
+            "value": "4"
+          },
+          "C_NUM_PROBE_OUT": {
+            "value": "2"
+          },
+          "C_PROBE_IN1_WIDTH": {
+            "value": "16"
+          },
+          "C_PROBE_IN2_WIDTH": {
+            "value": "4"
+          },
+          "C_PROBE_IN3_WIDTH": {
+            "value": "24"
+          },
+          "C_PROBE_IN4_WIDTH": {
+            "value": "16"
           },
           "C_PROBE_OUT0_INIT_VAL": {
             "value": "0x000001"
           },
           "C_PROBE_OUT0_WIDTH": {
             "value": "24"
+          },
+          "C_PROBE_OUT1_INIT_VAL": {
+            "value": "0xFFFE"
+          },
+          "C_PROBE_OUT1_WIDTH": {
+            "value": "16"
           }
         }
       },
@@ -1828,6 +1892,13 @@
             "value": "24"
           }
         }
+      },
+      "proc_sys_reset_1": {
+        "vlnv": "xilinx.com:ip:proc_sys_reset:5.0",
+        "ip_revision": "16",
+        "xci_name": "sinus_gen_proc_sys_reset_1_0",
+        "xci_path": "ip\\sinus_gen_proc_sys_reset_1_0\\sinus_gen_proc_sys_reset_1_0.xci",
+        "inst_hier_path": "proc_sys_reset_1"
       }
     },
     "interface_nets": {
@@ -1845,12 +1916,13 @@
       }
     },
     "nets": {
-      "LUT_sample_data": {
+      "blk_mem_gen_0_douta": {
         "ports": [
           "blk_mem_gen_0/douta",
           "ila_0/probe3",
           "i2s_transmitter_0/data_left",
-          "i2s_transmitter_0/data_right"
+          "i2s_transmitter_0/data_right",
+          "ila_0/probe4"
         ]
       },
       "c_accum_0_Q": {
@@ -1887,25 +1959,32 @@
         "ports": [
           "clk_wiz_0/clk_out1",
           "blk_mem_gen_0/clka",
-          "clk_divider_0/clk_24_576m",
           "ila_0/clk",
-          "vio_0/clk"
+          "vio_0/clk",
+          "proc_sys_reset_1/slowest_sync_clk",
+          "clk_divider_0/clk_24_576m"
         ]
       },
       "i2s_transmitter_0_sdata": {
         "ports": [
           "i2s_transmitter_0/sdata",
           "dac_sdata_ext",
-          "ila_0/probe4"
+          "ila_0/probe5"
         ]
       },
       "proc_sys_reset_0_peripheral_aresetn": {
         "ports": [
-          "proc_sys_reset_0/peripheral_aresetn",
-          "clk_wiz_0/resetn",
-          "ila_0/probe5",
+          "proc_sys_reset_1/peripheral_aresetn",
           "i2s_transmitter_0/rst",
+          "ila_0/probe6",
           "clk_divider_0/rst"
+        ]
+      },
+      "proc_sys_reset_0_peripheral_aresetn1": {
+        "ports": [
+          "proc_sys_reset_0/peripheral_aresetn",
+          "proc_sys_reset_1/ext_reset_in",
+          "clk_wiz_0/resetn"
         ]
       },
       "processing_system7_0_FCLK_CLK0": {

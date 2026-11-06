@@ -2,7 +2,7 @@
 --Copyright 2022-2024 Advanced Micro Devices, Inc. All Rights Reserved.
 ----------------------------------------------------------------------------------
 --Tool Version: Vivado v.2024.2 (win64) Build 5239630 Fri Nov 08 22:35:27 MST 2024
---Date        : Tue Nov  3 12:37:23 2026
+--Date        : Fri Nov  6 10:43:43 2026
 --Host        : LAPTOP-A1OPUR72 running 64-bit major release  (build 9200)
 --Command     : generate_target sinus_gen_wrapper.bd
 --Design      : sinus_gen_wrapper
@@ -35,6 +35,7 @@ entity sinus_gen_wrapper is
     FIXED_IO_ps_clk : inout STD_LOGIC;
     FIXED_IO_ps_porb : inout STD_LOGIC;
     FIXED_IO_ps_srstb : inout STD_LOGIC;
+    button_switch_ext : in STD_LOGIC;
     dac_bclk_ext : out STD_LOGIC;
     dac_lrclk_ext : out STD_LOGIC;
     dac_sdata_ext : out STD_LOGIC
@@ -67,7 +68,8 @@ architecture STRUCTURE of sinus_gen_wrapper is
     FIXED_IO_ps_porb : inout STD_LOGIC;
     dac_bclk_ext : out STD_LOGIC;
     dac_lrclk_ext : out STD_LOGIC;
-    dac_sdata_ext : out STD_LOGIC
+    dac_sdata_ext : out STD_LOGIC;
+    button_switch_ext : in STD_LOGIC
   );
   end component sinus_gen;
 begin
@@ -94,6 +96,7 @@ sinus_gen_i: component sinus_gen
       FIXED_IO_ps_clk => FIXED_IO_ps_clk,
       FIXED_IO_ps_porb => FIXED_IO_ps_porb,
       FIXED_IO_ps_srstb => FIXED_IO_ps_srstb,
+      button_switch_ext => button_switch_ext,
       dac_bclk_ext => dac_bclk_ext,
       dac_lrclk_ext => dac_lrclk_ext,
       dac_sdata_ext => dac_sdata_ext
